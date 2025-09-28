@@ -25,38 +25,38 @@ function App() {
   }, [sign1, sign2, signs.length]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Астрологічна сумісність</h1>
+  <div className="app-container">
+    <h1>Астрологічна сумісність</h1>
 
-      {/* ✅ Контейнер для селекторів */}
-      <div className="selectors">
-        <label>
-          Мій знак:
-          <select value={sign1} onChange={e => setSign1(e.target.value)}>
-            {signs.map(s => (
-              <option key={s.id} value={s.id}>{s.name}</option>
-            ))}
-          </select>
-        </label>
+    <div className="selectors">
+      <label>
+        Мій знак:
+        <select value={sign1} onChange={e => setSign1(e.target.value)}>
+          {signs.map(s => (
+            <option key={s.id} value={s.id}>{s.name}</option>
+          ))}
+        </select>
+      </label>
 
-        <label>
-          Знак партнера:
-          <select value={sign2} onChange={e => setSign2(e.target.value)}>
-            {signs.map(s => (
-              <option key={s.id} value={s.id}>{s.name}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      <CompatibilityCard
-        sign1={sign1}
-        sign2={sign2}
-        data={data}
-        signs={signs}
-      />
+      <label>
+        Знак партнера:
+        <select value={sign2} onChange={e => setSign2(e.target.value)}>
+          {signs.map(s => (
+            <option key={s.id} value={s.id}>{s.name}</option>
+          ))}
+        </select>
+      </label>
     </div>
-  );
+
+    <CompatibilityCard
+      sign1={sign1}
+      sign2={sign2}
+      data={data}
+      signs={signs}
+    />
+  </div>
+);
+
 }
 
 
