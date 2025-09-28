@@ -1,1 +1,0 @@
-# astroguide-sth
