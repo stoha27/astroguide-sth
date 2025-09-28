@@ -11,37 +11,44 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`${API}/api/signs`).then(r => r.json()).then(setSigns);
+    fetch(`${import.meta.env.VITE_API_URL}/api/signs`)
+      .then(r => r.json())
+      .then(setSigns);
   }, []);
 
-  const load = async () => {
-    try {
-		const res = await fetch(`${API}/api/compatibility/${sign1}/${sign2}`);
-		if (!res.ok) {
-			setData(null);
-			return;
-		}
-		const json = await res.json();
-		setData(json);
-	}	catch (err) {
-		console.error("Помилка завантаження:", err);
-		setData(null);
-	}
-  };
-
-  useEffect(() => { if (signs.length) load(); }, [sign1, sign2, signs.length]);
+  useEffect(() => {
+    if (signs.length) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/compatibility/${sign1}/${sign2}`)
+        .then(r => r.json())
+        .then(setData);
+    }
+  }, [sign1, sign2, signs.length]);
 
   return (
-    <div style={{padding:"20px", fontFamily:"system-ui"}}>
+    <div style={{ padding: "20px" }}>
       <h1>Астрологічна сумісність</h1>
-      <div>
-        <select value={sign1} onChange={e => setSign1(e.target.value)}>
-          {signs.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-        </select>
-        <select value={sign2} onChange={e => setSign2(e.target.value)}>
-          {signs.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-        </select>
+
+      {/* ✅ Контейнер для селекторів */}
+      <div className="selectors">
+        <label>
+          Мій знак:
+          <select value={sign1} onChange={e => setSign1(e.target.value)}>
+            {signs.map(s => (
+              <option key={s.id} value={s.id}>{s.name}</option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Знак партнера:
+          <select value={sign2} onChange={e => setSign2(e.target.value)}>
+            {signs.map(s => (
+              <option key={s.id} value={s.id}>{s.name}</option>
+            ))}
+          </select>
+        </label>
       </div>
+
       <CompatibilityCard
         sign1={sign1}
         sign2={sign2}
@@ -51,5 +58,6 @@ function App() {
     </div>
   );
 }
+
 
 createRoot(document.getElementById("root")).render(<App />);
