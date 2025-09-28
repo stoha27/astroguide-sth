@@ -1,0 +1,14 @@
+[
+  { "id": "aries", "name": "Овен" },
+  { "id": "taurus", "name": "Телець" },
+  { "id": "gemini", "name": "Близнюки" },
+  { "id": "cancer", "name": "Рак" },
+  { "id": "leo", "name": "Лев" },
+  { "id": "virgo", "name": "Діва" },
+  { "id": "libra", "name": "Терези" },
+  { "id": "scorpio", "name": "Скорпіон" },
+  { "id": "sagittarius", "name": "Стрілець" },
+  { "id": "capricorn", "name": "Козоріг" },
+  { "id": "aquarius", "name": "Водолій" },
+  { "id": "pisces", "name": "Риби" }
+]
