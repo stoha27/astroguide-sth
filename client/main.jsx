@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import CompatibilityCard from "./src/components/CompatibilityCard";
 
-const API = "http://localhost:4000";
+const API = import.meta.env.VITE_API_URL;
 
 function App() {
   const [signs, setSigns] = useState([]);
